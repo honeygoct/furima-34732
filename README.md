@@ -15,35 +15,34 @@
 - has_many :orders
 
 ## items テーブル
-| Column          | Type      | Options      |
-|-----------------|-----------|--------------|
-|item name        | string    |null:false    |
-|explain          | string    |null:false    |
-|category         | string    |null:false    |
-|status           | string    |null:false    |
-|shipping fee     | string    |null:false    |
-|shipping location| string    |null:false    |
-|shipping days    | string    |null:false    |
-|price            | integer   |null:false    |
+| Column             | Type      | Options      |
+|--------------------|-----------|--------------|
+|user_id             | reference |null:false    |
+|item_name           | string    |null:false    |
+|explain             | text      |null:false    |
+|category_id         | integer   |null:false    |
+|status_id           | string    |null:false    |
+|shipping_fee_id     | integer   |null:false    |
+|shipping_location_id| integer   |null:false    |
+|shipping_days_id    | integer   |null:false    |
+|price               | integer   |null:false    |
 ### Association
-- belongs_to :users
+- belongs_to :user
 - has_many :orders
 
 # orders テーブル
 | Column          | Type      | Options      |
 |-----------------|-----------|--------------|
-|card number      | integer   |null:false    |
-|validated data m | integer   |null:false    |
-|validated data y | integer   |null:false    |
-|security code    | integer   |null:false    |
-|postal code      | integer   |null:false    |
-|prefecture       | string    |null:false    |
+|user_id          | reference |null:false    |
+|item_id          | reference |null:false    |
+|postal_code      | integer   |null:false    |
+|prefecture_id    | string    |null:false    |
 |city             | string    |null:false    |
 |address          | string    |null:false    |
 |building         | string    |              |
-|phone number     | string    |null:false    |
+|phone_number     | string    |null:false    |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
