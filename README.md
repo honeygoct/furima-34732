@@ -1,24 +1,61 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
+| Column          | Type      | Options      |
+|-----------------|-----------|--------------|
+|nickname         | string    |null:false    |
+|email            | string    |null:false    |
+|password         | string    |null:false    |
+|last name        | string    |null:false    |
+|first name       | string    |null:false    |
+|last name kana   | string    |null:false    |
+|first name kana  | string    |null:false    |
+|birthday         | integer   |null:false    |
 
-Things you may want to cover:
+### Association
 
-* Ruby version
+- has_many :items
+- has_many :orders
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+## items テーブル
 
-* Database initialization
+| Column          | Type      | Options      |
+|-----------------|-----------|--------------|
+|image            | image     |null:false    |
+|item name        | string    |null:false    |
+|explain          | string    |null:false    |
+|category         | string    |null:false    |
+|status           | string    |null:false    |
+|shipping fee     | string    |null:false    |
+|shipping location| string    |null:false    |
+|shipping days    | string    |null:false    |
+|price            | integer   |null:false    |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :users
+- has_many :orders
 
-* Deployment instructions
 
-* ...
+
+# orders テーブル
+
+| Column          | Type      | Options      |
+|-----------------|-----------|--------------|
+|card number      | integer   |null:false    |
+|validated data m | integer   |null:false    |
+|validated data y | integer   |null:false    |
+|security code    | integer   |null:false    |
+|postal code      | integer   |null:false    |
+|prefecture       | string    |null:false    |
+|city             | string    |null:false    |
+|address          | string    |null:false    |
+|building         | string    |              |
+|phone number     | string    |null:false    |
+
+### Association
+
+- belongs_to :users
+- belongs_to :items
