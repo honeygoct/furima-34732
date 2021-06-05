@@ -1,29 +1,22 @@
 # テーブル設計
-
 ## users テーブル
-| Column          | Type      | Options      |
-|-----------------|-----------|--------------|
-|nickname         | string    |null:false    |
-|email            | string    |null:false    |
-|password         | string    |null:false    |
-|last name        | string    |null:false    |
-|first name       | string    |null:false    |
-|last name kana   | string    |null:false    |
-|first name kana  | string    |null:false    |
-|birthday         | integer   |null:false    |
-
+| Column           | Type      | Options                 |
+|------------------|-----------|-------------------------|
+|nickname          | string    |null:false               |
+|email             | string    |null:false,nuique:true   |
+|encrypted_password| string    |null:false               |
+|last_name         | string    |null:false               |
+|first_name        | string    |null:false               |
+|last_name_kana    | string    |null:false               |
+|first_name_kana   | string    |null:false               |
+|birthday          | date      |null:false               |
 ### Association
-
 - has_many :items
 - has_many :orders
 
-
-
 ## items テーブル
-
 | Column          | Type      | Options      |
 |-----------------|-----------|--------------|
-|image            | image     |null:false    |
 |item name        | string    |null:false    |
 |explain          | string    |null:false    |
 |category         | string    |null:false    |
@@ -32,16 +25,11 @@
 |shipping location| string    |null:false    |
 |shipping days    | string    |null:false    |
 |price            | integer   |null:false    |
-
 ### Association
-
 - belongs_to :users
 - has_many :orders
 
-
-
 # orders テーブル
-
 | Column          | Type      | Options      |
 |-----------------|-----------|--------------|
 |card number      | integer   |null:false    |
