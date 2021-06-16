@@ -17,32 +17,41 @@
 ## items テーブル
 | Column             | Type      | Options      |
 |--------------------|-----------|--------------|
-|user_id             | reference |null:false    |
+|user                | reference |null:false    |
 |item_name           | string    |null:false    |
 |explain             | text      |null:false    |
 |category_id         | integer   |null:false    |
-|status_id           | string    |null:false    |
+|status_id           | integer   |null:false    |
 |shipping_fee_id     | integer   |null:false    |
 |shipping_location_id| integer   |null:false    |
 |shipping_days_id    | integer   |null:false    |
 |price               | integer   |null:false    |
 ### Association
 - belongs_to :user
-- has_many :orders
+- has_one :order
 
 # orders テーブル
 | Column          | Type      | Options      |
 |-----------------|-----------|--------------|
-|user_id          | reference |null:false    |
-|item_id          | reference |null:false    |
-|postal_code      | integer   |null:false    |
-|prefecture_id    | string    |null:false    |
+|user             | reference |null:false    |
+|item             | reference |null:false    |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- has_one :address
+
+
+# Address テーブル
+| Column          | Type      | Options      |
+|-----------------|-----------|--------------|
+|postal_code      | string    |null:false    |
+|prefecture_id    | integer   |null:false    |
 |city             | string    |null:false    |
 |address          | string    |null:false    |
 |building         | string    |              |
 |phone_number     | string    |null:false    |
 
 ### Association
-
-- belongs_to :user
-- belongs_to :item
+- belongs_to :order
