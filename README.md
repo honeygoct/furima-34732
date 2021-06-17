@@ -18,7 +18,7 @@
 | Column             | Type      | Options                     |
 |--------------------|-----------|-----------------------------|
 |user                | reference |null:false, foreign_key: true|
-|item_name           | string    |null:false                   |
+|name                | string    |null:false                   |
 |explain             | text      |null:false                   |
 |category_id         | integer   |null:false                   |
 |status_id           | integer   |null:false                   |
@@ -38,14 +38,14 @@
 - belongs_to :user
 - belongs_to :item
 - has_one :address
-# Address テーブル
+# Addresses テーブル
 | Column          | Type      | Options                     |
 |-----------------|-----------|-----------------------------|
 |order            | reference |null:false, foreign_key: true|
 |postal_code      | string    |null:false                   |
 |prefecture_id    | integer   |null:false                   |
 |city             | string    |null:false                   |
-|address          | string    |null:false                   |
+|house_number     | string    |null:false                   |
 |building         | string    |                             |
 |phone_number     | string    |null:false                   |
 ### Association
