@@ -9,6 +9,6 @@ class Item < ApplicationRecord
   validates :shipping_days_id, presence: true
   validates :price, presence: true
 
-  belongs_to :user
-  has_one :order
+  #belongs_to :user
+  #has_one :order
 end
