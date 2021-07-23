@@ -6,7 +6,6 @@ class User < ApplicationRecord
   
   with_options presence: true do
   validates :nickname
-  #validates :encrypted_password, length: { minimum: 6 }
   validates :birthday
   end
 
@@ -26,7 +25,7 @@ class User < ApplicationRecord
   end
 
 
-  #has_many :items
+  has_many :items
   #has_many :orders
 
     
