@@ -1,12 +1,13 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :house_number, :building, :phone_number
+  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :house_number, :building, :phone_number, :token
 
   with_options presence: true do
     validates :postal_code
     validates :city
     validates :house_number
     validates :phone_number
+    validates :token
   end
 
 
@@ -21,4 +22,9 @@ class OrderAddress
     
   end
 
+  VALID_POSTAL_CODE_REGEX = /\A\d{3}[-]\d{4}\z/ 
+  validates :postal_code, format: { with: VALID_POSTAL_CODE_REGEX }
+
+
+  validates :phone_number,length:{ is:11 } ,numericality: {only_integer: true}
 end

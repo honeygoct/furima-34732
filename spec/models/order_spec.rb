@@ -1,5 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @order = Factory.build(:order)
+  end
+
+  describe '商品購入機能' do
+    context '商品購入できるとき'do
+      it ''
+
+    end
+  end
+
+
+
 end
