@@ -8,6 +8,9 @@ class OrderAddress
     validates :house_number
     validates :phone_number
     validates :token
+    validates :user_id
+    validates :item_id
+    validates :prefecture_id
   end
 
 

@@ -4,17 +4,15 @@ class OrdersController < ApplicationController
 
   def index
     @order = OrderAddress.new
-    @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    end
+    item_params
+    sold_out_item
 
   end
 
 
   def create
     @order = OrderAddress.new(order_params)
-    @item = Item.find(params[:item_id])
+    item_params
     if @order.valid?
       pay_item
       @order.save
@@ -30,10 +28,14 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order_address).permit(:order_id, :postal_code, :prefecture_id, :city, :house_number, :building, :phone_number).merge(user_id: current_user.id, item_id:params[:item_id],token: params[:token])
   end
-  
-  def sold_out_item
+
+  def item_params
     @item = Item.find(params[:item_id])
-    if @item.order.present?
+  end
+
+  def sold_out_item
+    item_params
+    if @item.order.present? || current_user.id == @item.user_id
     redirect_to root_path 
     end
   end
