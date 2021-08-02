@@ -1,18 +1,15 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :item_params
   before_action :sold_out_item, only: [:index]
 
   def index
     @order = OrderAddress.new
-    item_params
-    sold_out_item
-
   end
 
 
   def create
     @order = OrderAddress.new(order_params)
-    item_params
     if @order.valid?
       pay_item
       @order.save
