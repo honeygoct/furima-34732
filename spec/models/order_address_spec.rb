@@ -94,6 +94,13 @@ RSpec.describe OrderAddress, type: :model do
         expect(@orderaddress.errors.full_messages).to include("Phone number is not a number")
       end
 
+      it '電話番号が英数混合では購入できないこと' do
+        @orderaddress.phone_number = "aaaaa111111"
+        @orderaddress.valid?
+        expect(@orderaddress.errors.full_messages).to include("Phone number is not a number")
+      end
+
+
       it'クレジットカード情報がないと購入できない'do
         @orderaddress.token = ""
         @orderaddress.valid?

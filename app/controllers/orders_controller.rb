@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :item_params
-  before_action :sold_out_item, only: [:index]
+  before_action :sold_out_item, only: [:index,:create]
 
   def index
     @order = OrderAddress.new
@@ -31,7 +31,6 @@ class OrdersController < ApplicationController
   end
 
   def sold_out_item
-    item_params
     if @item.order.present? || current_user.id == @item.user_id
     redirect_to root_path 
     end

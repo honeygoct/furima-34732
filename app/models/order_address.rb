@@ -3,20 +3,18 @@ class OrderAddress
   attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :house_number, :building, :phone_number, :token
 
   with_options presence: true do
-    validates :postal_code
+    VALID_POSTAL_CODE_REGEX = /\A\d{3}[-]\d{4}\z/
+    validates :postal_code,format: { with: VALID_POSTAL_CODE_REGEX }
     validates :city
     validates :house_number
-    validates :phone_number
+    validates :phone_number,length:{ is:11 } ,numericality: {only_integer: true}
     validates :token
     validates :user_id
     validates :item_id
-    validates :prefecture_id
+    validates :prefecture_id,numericality: { other_than: 1,message: "must be other than 1" }
   end
 
 
-  with_options numericality: { other_than: 1 , message: "must be other than 1"}  do
-    validates :prefecture_id
-  end
 
   def save
     
@@ -25,9 +23,9 @@ class OrderAddress
     
   end
 
-  VALID_POSTAL_CODE_REGEX = /\A\d{3}[-]\d{4}\z/ 
-  validates :postal_code, format: { with: VALID_POSTAL_CODE_REGEX }
+  #VALID_POSTAL_CODE_REGEX = /\A\d{3}[-]\d{4}\z/ 
+  #validates :postal_code, format: { with: VALID_POSTAL_CODE_REGEX }
 
 
-  validates :phone_number,length:{ is:11 } ,numericality: {only_integer: true}
+  #validates :phone_number,length:{ is:11 } ,numericality: {only_integer: true}
 end
